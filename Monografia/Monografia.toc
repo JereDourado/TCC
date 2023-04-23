@@ -1,0 +1,22 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {chapter}{Agradecimentos}{iii}{}%
+\contentsline {chapter}{Resumo}{v}{}%
+\contentsline {chapter}{Introdução}{10}{}%
+\contentsline {chapter}{\numberline {1}Conceitos Básicos da Teoria Dos Jogos}{11}{}%
+\contentsline {section}{\numberline {1.1}Contexto Histórico}{11}{}%
+\contentsline {section}{\numberline {1.2}Formalização Matemática}{13}{}%
+\contentsline {section}{\numberline {1.3}Solução de um Jogo}{15}{}%
+\contentsline {subsection}{\numberline {1.3.1}Dominância}{16}{}%
+\contentsline {subsection}{\numberline {1.3.2}Equilíbrio de Nash}{18}{}%
+\contentsline {section}{\numberline {1.4}Estratégias Mistas}{19}{}%
+\contentsline {subsection}{\numberline {1.4.1}Soluções em Estratégias Mistas}{21}{}%
+\contentsline {subsection}{\numberline {1.4.2}Equilíbrio de Nash}{22}{}%
+\contentsline {chapter}{\numberline {2}Evolução e Cooperação}{24}{}%
+\contentsline {section}{\numberline {2.1}Jogos Consecutivos}{25}{}%
+\contentsline {subsection}{\numberline {2.1.1}Coeficiente de Reputação}{30}{}%
+\contentsline {section}{\numberline {2.2}Jogos Evolutivos}{31}{}%
+\contentsline {subsection}{\numberline {2.2.1}Evolução da Cooperação}{33}{}%
+\contentsline {section}{\numberline {2.3}Aplicabilidade}{36}{}%
+\contentsline {chapter}{Apêndice 1}{37}{}%
+\contentsline {chapter}{Apêndice 2}{38}{}%
+\contentsline {chapter}{Apêndice 3}{39}{}%

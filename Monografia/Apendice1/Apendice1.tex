@@ -1,0 +1,59 @@
+%\include{../preambulo/preambulo.tex}
+
+\addcontentsline{toc}{chapter}{Apêndice 1}
+\section*{Apêndice 1}
+
+{\scriptsize
+\begin{verbatim}
+p=input('População Inicial P = ');
+coe=input('Percentual de Indivíduos que Cooperam K = ');
+n=input('Número de Gerações N = ');
+pc=coe.*p; % criação do grupo que coopera
+pd=p-pc; % criação do grupo que não coopera
+rc=zeros(1,n); % vetor para armazenar quantos cooperava a cada geração
+rd=zeros(1,n); % vetor para armazenar quantos não cooperava a cada geração
+a=rand; % gerador aleatorio da estrategia do jogador a
+b=rand; % gerador aleatorio da estrategia do jogador b
+T=[3 0; 5 1];
+for i=1:n % jogo sendo executado n vezes
+    if a<=coe % escolha da jogada do jogador a
+        ja=1;
+    else
+        ja=0;
+    end
+    if b<=coe % escolha da jogada do jogador b
+        jb=1;
+    else
+        jb=0;
+    end
+    if ja==1 && jb==1
+        pc=pc+2.*T(1,1);
+        pd=pd+T(1,2);
+    elseif ja==1 && jb==0
+        pc=pc+T(1,2);
+        pd=pd+T(2,1);
+    elseif ja==0 && jb==1
+        pc=pc+T(1,2);
+        pd=pd+T(2,1);
+    elseif ja==0 && jb==0
+        pc=pc+T(1,2);
+        pd=pd+2.*T(2,2);
+    end
+    pn=pc+pd; % soma da população nessa geração
+    coe=pc./pn; % atualizando o percentual do grupo que coopera
+    pc=coe.*p; % atualizando o grupo que coopera
+    pd=p-pc; % atualizando o grupo que não coopera
+    rc(i)=pc; % armazenando quantos cooperou nessa geração
+    rd(i)=pd; % armazenando quantos cooperou nessa geração
+    a=rand; % gerador aleatorio da estrategia do jogador a
+    b=rand; % gerador aleatorio da estrategia do jogador a
+end
+aux=figure(1); % gerando o gráfico
+set(aux,'Name','Evolução da Proporção')
+plot(1:n,rc,'g',1:n,rd,'r')
+legend('Grupo A - Indivíduos que cooperam','Grupo B - Indivíduos que não cooperam')
+\end{verbatim}}
+
+
+
+%\end{document}

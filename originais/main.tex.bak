@@ -1,0 +1,470 @@
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openany,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneoside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% PACOTESs
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{A influência da variação fenotípica na dinâmica de espécies interagindo através de jogos evolutivos}
+\autor{Moiseis dos Santos Cecconello}
+\local{Brasil}
+\data{\today}
+\instituicao{%
+  Universidade Federal de Mato Grosso% -- UFMT
+  \par
+  Universit\'{a} Degli Studi di Torino 
+  \par
+ Supervisor: Dr. Ezio Venturino}
+%\tipotrabalho{Tese (Doutorado)}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Projeto de pós-doutorado submetido ao programa Ciências Sem Fronteiras com a finalidade de obter recursos para o desenvolvimento de pesquisa junto à Universitá Degli Studi di Torino sob a supervisão do professor Dr. Ezio Venturino.}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{projeto de pesquisa}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% ---
+\imprimirfolhaderosto*
+
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução
+% ----------------------------------------------------------
+\chapter*[Introdução]{Introdução}
+\addcontentsline{toc}{chapter}{Introdução}
+
+O princípio da seleção natural conforme desenhado por Darwin é um dos principais mecanismos de evolução das espécies e está pautada em três axiomas: 1 -- a \textit{variação fenotípica}, isto é, diferentes indivíduos tem diferentes características morfológica, fisiológica e comportamental;  2 -- o \textit{valor de adaptação} que atribui diferentes taxas de reprodução e sobrevivência para fenótipos diferentes e; 3 -- a \textit{hereditariedade}, ou seja, existem uma correlação entre os fenótipos de genitores e descendentes \cite{NOVBOOK}.
+
+Conforme amplamente discutido por Darwin em \cite{DWBOOK}, a luta pela sobrevivência leva os indivíduos de uma população a estarem em constante interação. Por exemplo, tais indivíduos interagem na disputa por recursos naturais como espaço e alimento, fuga de predadores bem como na busca de parceiros para o acasalamento e reprodução.  Assim, a forma como um determinado indivíduo se comporta nestas interações com os demais da população pode influenciar o seu sucesso reprodutivo. Admitindo que o comportamento adotado por tais indivíduos é hereditário, essas interações estão então sujeitas ao processo seleção natural.  Comportamentos que promovem o sucesso reprodutivo o crescimento populacional dos indivíduos que o adotam,  e igualmente, a seleção natural age dificultando o crescimento populacional de indivíduos cujo comportamento levam a um menor valor de adaptação. 
+
+A teoria dos jogos tem sua origem na tentativa de dar uma descrição matemática para o resultado proveniente de interações humanas, em especial, em interações humanas no contexto da economia \cite{cccnature}. A interação entre indivíduos, os \textit{jogadores}, resulta em \textit{retorno} (o \textit{payoff} em inglês) para cada um dos envolvidos de acordo com as \textit{estratégias} de interação adotada pelos mesmos dentro de um conjunto de ações disponíveis para os mesmos. Neste contexto, os jogadores tem como objetivo encontrar  comportamentos estratégicos que resultam em otimizar os retornos agindo de maneira racional. Isto é, cada um envolvido no \textit{jogo} escolhe dentre um conjunto de estratégias aquela que resulta em um retorno ótimo tendo o conhecimento que os demais envolvidos estão agindo de maneira semelhante \cite{HGT}.    
+
+A aplicação dos conceitos de teoria dos jogos em biologia evolutiva dá origem ao que é tradicionalmente denominado na literatura por \textit{teoria dos jogos evolutivos}. Neste contexto, indivíduos adotam estratégias fixas e interagem aleatoriamente com os demais indivíduos da população, cada um adotando suas respectivas estratégias. O retorno (\textit{payoff}) de uma estratégia específica é então dependente da frequência com que outras estratégias estão sendo adotadas pelos indivíduos na população. Assim, na teoria dos jogos evolutivos, a racionalidade é substituída pela dinâmica populacional sujeita \`{a} seleção darwiniana e o retorno, ou o \textit{payoff}, é interpretado como o valor de adaptação, medido em termos da taxa de reprodução, do indivíduo adotando uma estratégia específica. O objeto de interesse dessa teoria é determinar se o processo de seleção natural pode conduzir a população para uma estratégia ótima adotada pelos indivíduos ou um estado de equilíbrio \cite{MAYBOOK}.  
+
+
+A teoria dos jogos evolutivos tem sido aplicado com êxito em uma grande variedade de problemas dentro da biologia. Mais especificamente, os jogos evolutivos tem desempenhado um papel importante na busca por explicações de como pode ter evoluído o comportamento de cooperação e altruísmo entre indivíduos, de uma mesma espécie ou mesmo de espécies diferentes, observados na natureza. Desde que a seleção natural tem como base a luta pela vida e a sobrevivência do mais apto então a existência de cooperação e altruísmo vão de encontro com o comportamento competitivo entre indivíduos. Os jogos evolutivos têm sido usados para elucidar essa aparente contradição.   
+
+Em termos de dinâmica populacional, a abordagem tradicional da teoria dos jogos evolutivos nos leva para um sistema de equações diferenciais ordinárias conhecida como dinâmica do replicador.  Este modelo considera que os indivíduos de uma população interagem por meio de um jogo evolutivo com $n$  estratégias fixas. Estas estratégias são características hereditárias (fenótipos)  e tais indivíduos são capazes de utilizar apenas uma dentre as $n$ estratégias. A questão de interesse então é como evolui com o tempo a proporção de indivíduos que adotam cada estratégia específica. A existência de pontos de equilíbrio bem como a natureza da suas  respectivas estabilidades são objeto de análise dessa abordagem. 
+
+Embora de contribuição inestimável para o desenvolvimento da teoria do jogos evolutivos, a abordagem da dinâmica populacional por meio da equação do replicador deixa de levar em consideração dois aspectos importantes em se tratando de interação entre indivíduos e as suas formas de reprodução. A primeira delas está relacionada ao modo com que indivíduos fazem uso das estratégias. Conforme discutido em \cite{MAYBOOK}, não é difícil encontrar exemplos de indivíduos adotando comportamentos mais complexos. Ao invés de escolher sempre a mesma estratégia, indivíduos podem optar por uma combinação de estratégias puras com determinadas probabilidades. Isto é, indivíduos podem adotar estratégias mistas de modo que tais fenótipos são então melhor descritos por variáveis contínuas assumindo valores em intervalos dos números reais. Se o jogo evolutivo está relacionado de alguma forma com as características físicas do indivíduo, como tamanho do corpo ou o tempo que o mesmo está disposto a participar da luta por um recurso natural por exemplo, então tais fenótipos são também melhor descritos por variáveis contínuas assumindo valores em intervalos dos números reais. Além disso, a equação do replicador descreve a dinâmica de uma população em que os indivíduos geram cópias idênticas de si mesmos. Isto é, a formulação tradicional da equação do replicador não incorpora variação fenotípica na dinâmica populacional. É possível encontrar na literatura generalizações da ideia da equação do replicador para o caso de estratégias contínuas. No entanto, tais generalizações não incorporam o mecanismo de variação fenotípica.  
+
+À parte da questão de jogos evolutivos, mais recentemente, \cite{RAAT} apresenta um modelo matemático geral para descrever a dinâmica populacional de indivíduos cujo fenótipo é descrito por parâmetros contínuos. A capacidade de incorporar mutação fenotípica é o diferencial do modelo proposto em \cite{RAAT} sobre os demais já estabelecidos na literatura.   
+
+Em resumo, assumindo que as estratégias mistas de jogos evolutivos são características hereditárias, então mutação fenotípica é um fator que acreditamos ser importante na modelagem da dinâmica evolutiva da população. Em especial, estamos interessados aqui em estratégias definidas por meio de  parâmetros cujo domínio são intervalos dos números reais. Portanto, é diante do cenário de considerar mutação fenotípica  em modelos de dinâmica populacional de indivíduos interagindo por meio de jogos evolutivos que propomos situar nossa pesquisa.
+
+
+\chapter{Objetivos gerais e específicos}
+Nossa proposta tem como objetivo principal:
+
+\begin{itemize} \item Propor  modelos matemáticos teóricos de dinâmica populacional, cujos indivíduos interagem por meio de jogos evolutivos, que levem em consideração a variação fenotípica no processo de reprodução. 
+\end{itemize}
+
+
+Mais especificamente, pretendemos delinear essa pesquisa com os seguintes objetivos:
+\begin{itemize}
+\item Entender o papel da variação fenotípica na condução da dinâmica populacional para estados de equilíbrios estáveis.
+\item Analisar jogos evolutivos clássicos da literatura que capturam a essência do comportamento de cooperação e altruísmo, como Hawk--Dove, Dilema do Prisioneiro entre outros,  por meio dessa abordagem.
+\item Analisar a existência de pontos de equilíbrio estáveis para os modelos propostos e interpretar biologicamente seu significado. 
+\item Procurar por semelhanças e diferenças entre as diversas abordagens teóricas atualmente bem estabelecidas na literatura.
+\item Formular hipóteses que possam ser testadas diretamente por meio de pesquisa experimental.
+\end{itemize}
+
+
+\chapter{Justificativa e relevância}
+
+Acreditamos que o desenvolvimento da abordagem proposta neste projeto pode trazer contribuições significativas para uma das áreas de pesquisa que mais tem sido utilizada atualmente na modelagem de interações sociais entre os animais ~-~ a teoria dos jogos evolutivos. Esta teoria tem se tornado a ferramenta adequada para explicar muitos dos conceitos de comportamento animal relacionados conflitos entre indivíduos, grupos sociais, a evolução de formas de cooperação e interações biológicas de maneira mais geral.    
+
+Na abordagem usual desta teoria, dado um jogo um evolutivo, a questão chave é saber se tal jogo admite uma estratégia \textit{evolutivamente estável}. Em linhas gerais, uma estratégia é evolutivamente estável se quando toda população está adotando tal estratégia, ela não pode ser substituída ou invadida por nenhuma outra estratégia via o processo de seleção natural \cite{MAYBOOK}.
+
+No entanto, essa abordagem não dá resposta satisfatórias para a seguintes perguntas. Como a dinâmica populacional pode evoluir para estratégias evolutivas estáveis? Sob quais condições uma ou outra estratégia evolutiva estável será adotada pela população? Como mencionamos anteriormente, essas perguntas podem respondidas por análise das soluções de equilíbrio da equação do replicador associada, muito embora tal dinâmica não incorpore em sua formulação a mutação fenotípica decorrente do processo de reprodução.
+      
+De acordo com \cite{NOVBOOK} a diversidade de fenótipos é um dos elementos essenciais sobre os quais o mecanismo da seleção natural pode agir. Sem diversidade fenotípica não há evolução.  Desde que estamos admitindo  que as estratégias adotadas pelos indivíduos nas suas interações com os demais são moldadas pela seleção natural então a estamos implicitamente admitindo a existência de mecanismos de natureza biológica que promovem a variação fenotípica.  
+
+Nos parece claro então que incluir a variação fenotípica na dinâmica populacional definida por jogos evolutivos é  o próximo passo na direção de tornar os modelos matemáticos mais adequados aos processos biológicos.  Dessa forma, além dos questionamentos anteriores, o desenvolvimento dessas pesquisa nos permitirá entender como e qual é o papel da variação fenotípica para existência e condução da população para um estado de equilíbrio. 
+
+Por ser uma abordagem inovadora, além da contribuição para a teoria dos jogos evolutivos dinâmicos, o desenvolvimento  desse projeto nos coloca na fronteira do conhecimento de uma das mais férteis áreas de pesquisa da atualidade. Do ponto de vista institucional, por ser um intercâmbio acadêmico internacional, esta pesquisa tem potencial para contribuir com o fortalecimento da pesquisa nas instituições envolvidas. Em particular, o conhecimento adquirido e produzido neste intercâmbio será útil para promover a criação e integração de grupos de pesquisas na região.   
+
+
+\chapter{Revisão bibliográfica}
+
+A teria do jogos enquanto ferramenta de fundamentação matemática em biologia evolutiva foi primeiramente apresentado por R. C. Lewontin em \cite{Lewontin1961382}.  A abordagem proposta R. C. Lewontin consiste em considerar um jogo entre o universo físico e indivíduos de uma espécie. Neste \textit{jogo contra a natureza}, as características genéticas formam o conjunto de ações adotadas pelos indivíduos  enquanto as condições físicas do ambiente representam os estados da natureza e o resultado dessa interação é medido em termos de número de descendentes para o indivíduo.  Interessado na dinâmica evolutiva da população,  R. C. Lewontin discute então o conceito de estratégia ótima para a população no jogo contra a natureza.        
+
+
+A teoria dos jogos evolutivos como conhecida atualmente tem sua origem em 1973 apresentada em \cite{MaynardSmith1973}. No artigo em questão, J. M. Smith e G. R. Price usam a teoria dos jogos como modelo para entender por que o conflito entre animais de uma mesma espécie, em geral, não resultam em sérios danos para os envolvidos na disputa.  Diferentemente de \cite{Lewontin1961382}, a abordagem em  \cite{MaynardSmith1973} consiste em considerar um jogo disputado por dois indivíduos da população, cada um adotando uma ação de um mesmo conjunto de ações. Desta forma, o valor de adaptação para o indivíduo não depende apenas da estratégia adotada pelo mesmo mas também das estratégias adotadas pelos demais indivíduos da população. 
+
+
+Analisando diferentes estratégias adotadas nas interações entre os indivíduos, J. M. Smith e G. R. Price mostram em \cite{MaynardSmith1973} como a seleção natural pode explicar as razões pelas quais estratégias potencialmente letais são  raramente usadas por indivíduos em conflitos por recursos naturais. A principal contribuição deste artigo é sem dúvida o conceito de estratégia evolutivamente estável. Em linhas gerais, uma estratégia é evolutivamente estável se a mesma não pode ser invadida por uma estratégia \textit{mutante}. Uma vez que uma estratégia evolutivamente estável é adotada pelos indivíduos da população, não há outra estratégia que possa dar maior valor adaptativo para os indivíduos que a adotam. 
+
+Em \cite{MaynardSmith1974209}, J. M. Smith analisa ainda um conflito entre dois indivíduos em que não há contato físico, mas apenas alguma forma de ameaça e persistência, na disputa por um recurso natural. Neste tipo de interação o vencedor é o que estiver disposto a persistir no conflito por um maior período de tempo e o perdedor, aquele que desistir da disputa pelo recurso. A importância desse trabalho reside  no fato de que uma formulação matematicamente mais precisa do conceito de estrategia evolutivamente estável é apresentada, estendendo ainda tal conceito para o caso em que a estratégia é descrita por uma variável contínua assumindo valores positivos.  
+
+Uma interessante aplicação da teoria dos jogos evolutivos pode ser encontrada em \cite{lawlor}. Neste artigo, os autores analisam a coevolução de duas espécies, os consumidores, competindo por dois recursos renováveis. Diferentes indivíduos apresentam diferentes habilidades para explorar tais recursos. A interação entre consumidores e recursos naturais é descrita por equações diferenciais cujas soluções são as densidades dos consumidores e recursos.  Os autores consideram que os parâmetros que definem as equações são variáveis evolutivas, as estratégias, e a seleção age sobre a taxa de crescimento \textit{per capita} dos consumidores.  O ponto chave é determinar condições para a existência de estratégias evolutivamente estáveis e suas respectivas interpretações. 
+
+Com o objetivo de analisar como uma população interagindo em um jogo evolutivo pode evoluir para estratégias evolutivamente estáveis, P. D. Taylor e L. B. Jonker introduzem a dinâmica do replicador em \cite{Taylor1978145}. Como hipóteses, os autores consideram que os indivíduos da população estão divididos entre $n$ estratégias e a população possui um crescimento, ou decrescimento, exponencial. A dinâmica do replicador é então um sistema de equações diferenciais que descreve a variação, com relação ao tempo, da proporção de indivíduos usando cada uma das $n$  estratégias. Além da sua mudança na forma de analisar jogos evolutivos, podemos citar como importante o fato de que uma estratégia evolutivamente estável é um ponto de equilíbrio assintoticamente estável para a dinâmica do replicador.
+
+O problema da cooperação mútua é que, embora a cooperação beneficie os indivíduos envolvidos na interação, cada um pode obter ainda mais benefício explorando do outro indivíduo o esforço despendido na cooperação. Isto é, indivíduos são incentivados a explorarem a cooperação do oponente. Neste contexto, talvez um dos jogos que tenha mais destaque na teoria do jogos é o Dilema do Prisioneiro.  R. Axlerod e W. D. Hamilton, em \cite{Axelrod81theevolution}, usam o Dilema do Prisioneiro para analisar como a cooperação entre indivíduos pode ter evoluído. Nas situações em que cada par de indivíduos interage apenas uma vez a melhor estratégia é não cooperar na interação. Entretanto, caso haja uma probabilidade significativa dos mesmo interagirem novamente, então cooperação munido de retaliação (tit--for--tat) é uma estratégia evolutivamente estável.      O dilema do prisioneiro aparece em diferentes contextos. Em \cite{PDV}, por exemplo, os autores analisam a interação deste tipo entre duas variantes de um vírus. 
+
+Altura de plantas bem como a profundidade das raízes também obedecem os payoffs do dilema do prisioneiro \cite{easley2010} e a teoria dos jogos evolutivos tem sido usada como modelo interação entre plantas disputando luz solar, por exemplo. Para plantas, investir em altura tem como benefício ter mais acesso a luz e tem, como desvantagem, os custos para construção e manutenção de troncos \cite{Falster2003337}. Também no caso de plantas surge a questão de cooperar ou não cooperar nas interações entre os indivíduos. Por exemplo, considere uma floresta composta por uma única espécie. Em tal contexto, produzindo troncos menores os custos para sua produção e manutenção seriam menores, o que traria benefícios para as todas plantas. No entanto, esse equilíbrio é instável pois uma planta mutante, com um tronco maior, teria maior valor de adaptação por ter melhores condições de iluminação que as demais. Esse problema é discutido em \cite{Iwasa1985279} no qual os autores propõem um jogo evolutivo levando em consideração variáveis como a taxa de fotossíntese, a intensidade da luz e os custos para produção e manutenção de troncos.        
+
+Como já visto, o uso de variáveis contínuas para descrever as estratégias adotadas por indivíduos da população é recorrente. Em \cite{Eshel198399}, I. Eshel define o conceito estratégia continuamente estável bem como suas relações com o conceito de estratégia evolutivamente estável proposto em \cite{MaynardSmith1974209}. Em tempos mais recentes, o conceito de \textit{dinâmica adaptativa} tem emergido como uma ferramenta que combina teoria dos jogos e dinâmica populacional para investigar a evolução de fenótipos dentro de uma população \cite{DINADPT,CONTRA}. No contexto de dinâmica adaptativa, é assumido a existência de uma população monomórfica em equilíbrio, a população \textit{residente}, e então é introduzido no ambiente uma pequena fração de indivíduos \textit{mutantes}. O sucesso dos mutantes é medido por sua taxa de reprodução inicial dentro do ambiente estabelecido pelos residentes. Finalmente, a teoria dos jogos é utilizada para encontrar um fenótipo que seja uma estratégia evolutivamente estável. Ainda neste contexto, é assumido também que a escala de tempo em que mutações ocorrem na população é maior do que a necessária para conduzir a população para um equilíbrio.     
+
+Em \cite{RAAT}, R. A. Assis apresenta um modelo de dinâmica evolutiva que leva em consideração as seguintes hipóteses: $1$ -- a população está distribuída em um espaço de fenótipos. Tal espaço é um intervalo, ou o produto cartesiano de intervalos, dos números reais. $2$ -- a taxa de reprodução dos indivíduos é função de sua localização neste espaço. $3$ -- há uma competição entre os indivíduos pelos recursos necessários para sobrevivência. $4$ -- os fenótipos dos descendentes são iguais ou semelhantes aos dos respectivos genitores. Em \cite{Assis20121507}, um modelo matemático derivado dessas hipóteses é utilizado para estudar a coevolução de espécies em interações do tipo parasita--hospedeiro. É essa abordagem que pretendemos usar aqui como ferramenta para analisar a dinâmica evolutiva de indivíduos interagindo por meio de jogos evolutivos.
+
+  
+\chapter{Metodologia}
+
+Nesta seção, descrevemos como utilizar a dinâmica evolutiva proposta em \cite{RAAT,Assis20121507} para analisar a dinâmica populacional de indivíduos interagindo por meio de jogos evolutivos.  
+
+\section{O modelo matemático}
+Consideremos uma população que obedece as seguintes condições:
+\begin{enumerate}
+\item A população está distribuída em um espaço de fenótipos $\Omega$. Tal espaço $\Omega$ é um intervalo, ou o produto cartesiano de intervalos, dos números reais. 
+\item A taxa de reprodução dos indivíduos é função de sua localização neste espaço. 
+\item Há uma competição entre os indivíduos da espécie pelos recursos necessários para sobrevivência. 
+\item Os fenótipos dos descendentes são iguais ou semelhantes aos dos respectivos genitores.
+\end{enumerate}
+Seja $u(x,t)$ a densidade de indivíduos com fenótipo $x$ no instante $t$. De acordo com \cite{RAAT}, a equação que descreve a dinâmica populacional sob essas condições é dada por:
+
+\begin{equation}\label{eqraul}
+\frac{\partial u}{\partial t}=rV\frac{\partial^2\left[f(x)u\right]}{\partial x^2}+ru\left(f(x)-\int_{\Omega}u(x,t)dx/K\right)
+\end{equation}
+Nesta equação, $r$ é a taxa de reprodução máxima da população, $V$ é o coeficiente de variação fenotípica, $K$ é a capacidade suporte do meio. A função $f:\Omega\to[0,1]$ é a responsável por conferir diferentes taxas de reprodução aos indivíduos de acordo com seus respectivos fenótipos.
+
+A equação \ref{eqraul} é o modelo padrão que pretendemos usar com o objetivo de estudar dinâmicas populacionais de indivíduos interagindo por meio de jogos evolutivos. 
+
+\section{A dinâmica em jogo evolutivo}
+Consideremos agora um jogo evolutivo para interação entre dois indivíduos com duas estratégias fixas, digamos $A$ e $B,$ descrito pela seguinte matriz de payoffs:
+
+$$\bordermatrix{
+&A&B\cr
+A&a& b \cr
+B &c&d
+}$$
+
+Na interpretação usual, se os indivíduos estão interagindo usando a estratégia $A,$ então ambos obtém como retorno o valor $a.$ Se  estão interagindo usando a estratégia $B,$  então ambos obtém como retorno o valor $d.$ Se um usa a estratégia $A$ e o outro $B$ na interação então o primeiro obtém $b$ como retorno e segundo, $c.$
+
+De nosso interesse é o caso em que os indivíduos adotam estratégias mistas. Digamos que um indivíduo adote a estratégia $A$ com probabilidade $x$ e $B$ com $1-x$. Já seu oponente, adota $A$ com probabilidade $y$ e $B$ com probabilidade $1-y.$ Assim, o payoff esperado em uma interação dessa forma, para o indivíduo adotando $A$ com probabilidade $x,$ é dado por: $$E(x,y)=xya+x(1-y)b+y(1-x)c+(1-x)(1-y)d.$$ 
+
+Neste contexto, o fenótipo dos indivíduos da população é a probabilidade $x$ com que o mesmo adota a estratégia $A$ e, portanto, o nosso espaço de fenótipos para o modelo anterior é o intervalo $[0,1].$
+Como mencionamos anteriormente, a ideia chave da teoria evolutiva dos jogos é que o retorno para um indivíduo depende da frequência com que outras estratégias são adotadas na população. Usando este princípio, então a função $f$ no modelo \ref{eqraul} é:
+\begin{equation}\label{funcf}
+f(x)=\frac{1}{rK}\int_{0}^1E(x,y)u(y,t)dy
+\end{equation}
+em que $r=max\{a,b,c,d\}$ e $K$ é a capacidade suporte do meio.
+
+Uma análise superficial da expressão \ref{funcf} nos mostra que a busca por solução para a \ref{eqraul} pode requerer ferramentas matemáticas sofisticadas. Uma busca por soluções numéricas nos apresenta como uma ferramenta apropriada para ser usada neste contexto.    
+
+\section{Alguns casos particulares}
+Nesta seção, vamos analisar alguns casos particulares de matrizes de payoff.
+
+\subsection{Hawk--Dove}
+O jogo evolutivo \textit{Hawk--Dove} é utilizado como modelo para indivíduos envolvidos em uma disputa por algum recurso natural \cite{cccnature}. Os indivíduos podem escolher entre duas estratégias: \textit{Hawk} ($H$) e \textit{Dove} ($D$). Um indivíduo adotando a estratégia $H$ é agressivo e sempre que confrontado está disposto a iniciar um combate hostil. Por outro lado, indivíduos adotando a estratégia $H$ são passivos e evitam confrontos hostis. O vencedor do confronto obtém um benefício $b$ e um custo $c$ causado por possíveis lesões. O perdedor obtém payoff $0.$ Indivíduos adotando a mesma estratégia  $H$ tem igual probabilidade de vencer o confronto e o payoff obtido é $(b-c)/2.$ Indivíduos adotando a mesma estratégia  $D$ dividem igualmente o benefício e o payoff obtido é $b/2.$ Um indivíduo adotando uma estratégia $H$ contra $D$  recebe inteiramente o benefício. A matriz de payoff que resume essas informações é:
+
+$$\bordermatrix{
+&H&D\cr
+H&(b-c)/2& b \cr
+D &0&b/2
+}$$
+
+Para essa matriz, o retorno esperado no caso de estratégias mista é: $$E(x,y)=\frac{b}{2}\left(1+x-y-\frac{c}{b}xy\right).$$ 
+Pretendemos investigar qual é a influência dos parâmetros na dinâmica definida por \ref{eqraul}  
+\subsection{Dilema do prisioneiro}
+Talvez um dos jogos que tenha mais destaque na teoria do jogos é o Dilema do Prisioneiro. Esse jogo tem sido empregado em situações onde a cooperação mútua aumenta o valor de adaptação dos envolvidos. Em contrapartida, cada indivíduo é incentivado a desertar da cooperação obtendo um maior valor de adaptação por explorar o esforço alheio.
+
+Considere a interação entre dois indivíduos  que podem \textit{cooperar} ($C$) e \textit{desertar} ($D$) da cooperação. A matriz de payoffs para o caso do dilema do prisioneiro é dada por 
+$$asasas \bordermatrix{
+&C&D\cr
+C&a& b \cr
+D &c&d
+}$$ 
+ em que $c>a>d>b.$ Numericamente, um exemplo de dilema do prisioneiro é $$\bordermatrix{
+&C&D\cr
+C&3& 0 \cr
+D &5&1
+}$$  o que em termos de estratégias mistas para um indivíduo adotando $A$ com probabilidade $x$ e o oponente $A$ com probabilidade $y$ é: 
+$$E(x,y)=1-x+4y-xy.$$ 
+
+\subsection{Conflitos por recursos}
+Consideremos agora o jogo evolutivo proposto em \cite{MaynardSmith1974209} para o caso de disputa por algum recurso natural em que não há hostilidade, sem a possibilidade de lesões físicas. Seja $v$ o payoff para o vencedor do confronto. Seja $x \in [0, M]$ uma medida relacionada com o tempo em que o indivíduo está disposto a participar do confronto pelo recurso. Assim, se $x>y$ então o indivíduo adotando $x$ é o vencedor e obtém um payoff $v-y$. O perdedor neste caso obtém um payoff $-y.$  Em resumo, a função que retorna o payoff para o indivíduo adotando $x$ é:  
+$$E(x,y)=\left\lbrace\begin{array}{l}
+v-y\qquad\textrm{ se } x>y\\
+-x\qquad\textrm{ se } x<y
+\\
+\frac{1}{2}v-x \textrm{ se } x=y
+\end{array}\right.$$
+
+Desta forma, a função que descreve o valor de adaptação é dada por:
+$$f(x)=\alpha\int_0^ME(x,y)u(y,t)dy$$ em que $\alpha$ é tal que $f(x)\in[0,1].$ 
+O objetivo aqui é verificar a influência da variação fenotípica comparando a solução obtida por essa abordagem com a distribuição obtida em \cite{MaynardSmith1974209}. 
+
+\subsection{Mais de duas estratégias puras}
+Alguns jogos podem admitir mais do que simplesmente duas estratégias puras. No caso em que temos três estratégias puras, digamos $A,$ $B$ e $C$, o conjunto de estratégias mistas é definido por dois parâmetros: $x$ é a probabilidade de adotar $A,$ $y$ de adotar $B$ e $1-x-y$ a probabilidade do indivíduo  adotar a estratégia $C.$
+
+Assim, o espaço de fenótipos para o caso estratégias mistas definidas a partir de três estratégias puras é $\Omega=[0,1]\times[0,1].$ Para estudar a dinâmica neste ambiente, vamos adotar a versão bidimensional da equação \ref{eqraul} apresentada em \cite{RAAT}. 
+
+\section{Outras estratégias: identificando o oponente}
+
+Vejamos agora algumas outras possíveis abordagens que podemos adotar para analisar a dinâmica populacional por meio da equação \ref{eqraul}.
+
+\subsection{Hawk--Dove}
+Suponha que em uma população são introduzidos indivíduos que conseguem identificar, com probabilidade $p,$ \textit{hawks} e \textit{doves}.  Quando identificam o oponente como \textit{dove}, tais indivíduos também agem como \textit{dove}. Caso identifiquem o oponente como \textit{hawk}, tais indivíduos agem como \textit{hawk}. Além disto, tais indivíduos sempre agem como \textit{dove} quando interagindo entre eles. 
+
+Usando a equação \ref{eqraul}, vamos  analisar a  evolução de uma população de indivíduos agindo dessa forma.
+
+\subsection{Dilema do prisioneiro}
+O dilema do prisioneiro é um dos jogos evolutivos mais explorados na tentativa de buscar uma solução que explique a evolução do comportamento de cooperação. As \textit{estratégias de reação} formam um conjunto particularmente interessante de estratégias que tem sido usada com esse objetivo. Tais estratégias são definidas por dois parâmetros: $x$ denota a probabilidade de cooperação dado que oponente cooperou na interação anterior;  $y$ é a probabilidade de cooperação dado que o oponente desertou na interação anterior. 
+
+Em \cite{NOVBOOK}, M.A. Novak utiliza esse tipo de estratégia para definir uma matriz de payoffs e analisar a evolução da dinâmica populacional por meio da dinâmica do replicador. Usando a mesma abordagem, podemos analisar a dinâmica populacional usando a equação \ref{eqraul} ao invés da dinâmica do replicador.  
+
+
+Assim como mencionado anteriormente, vamos ainda analisar a  evolução de uma população de indivíduos que tenham, em algum grau, a capacidade de identificar oponentes que cooperam ou desertam.
+
+\section{Outras abordagens}
+A equação \ref{eqraul} é o modelo padrão que pretendemos adotar para atingir os objetivos desse projeto. No entanto, algumas outras opções podem ser exploradas.
+
+\subsection{Equação do replicador generalizada}
+Como já mencionamos, a dinâmica do replicador padrão é capaz de descrever a proporção de indivíduos usando uma estratégia específica apenas nos caso em o número de estratégias é finito sem o mecanismo de variação fenotípica. Usando a integral da equação \ref{eqraul}, conforme apresentado em \cite{RAAT}, podemos desenvolver um modelo similar para o caso de em que indivíduos dispõem de estrategias definidas por parâmetros contínuos, incorporando variação fenotípica. 
+
+Seja $q(x,y)$ uma função densidade de probabilidade definida sobre o espaço de aspecto $\Omega\times\Omega.$ Tal densidade está relacionada com a probabilidade de um indivíduo de fenótipo $x$ gerar descendentes do fenótipo $y.$ Considere ainda o payoff $E(x,y)$ de indivíduos adotando a estratégia $x$ contra $y$. 
+
+Usando a mesma abordagem adotada por \cite{Taylor1978145}, então $$f(x)=\int_{\Omega}E(x,y)q(x,y)u(y,t)dy$$ é a taxa de reprodução média do fenótipo $x$ e $$\theta=\int_{\Omega}f(y)u(y,t)dy$$ é a taxa de reprodução média da população. Uma versão da dinâmica do replicador, com variação fenotípica, é então expressa por:
+\begin{equation}\label{eqint}
+\frac{\partial u}{\partial t}=u(x,t)\left(f(x)-\theta\right).
+\end{equation} 
+Pela equação anterior, se definirmos $$N(t)=\int_{\Omega}u(x,t)dx$$ então 
+$$\frac{dN}{dt}=\theta(1-N).$$
+
+Por ser um modelo inédito, se faz necessário buscar por interpretações biológicas bem como analisar a dinâmica descrita pela equação \ref{eqint}.
+
+\subsection{Influência do aprendizado}
+A dinâmica descrita pela equação \ref{eqraul} considera apenas o caso em que indivíduos herdam o comportamento dos seus antecessores. No entanto, algumas características comportamentais  podem sofrer influência do meio em questão.  
+
+Em \cite{JTB}, os autores apresentam uma dinâmica evolutiva para descrever a dinâmica populacional em situação nos quais os indivíduos podem aprender por meio de interações com os demais da população. Portanto, vamos buscar incorporar o mecanismo de aprendizagem nas equações \ref{eqraul} e \ref{eqint}. 
+
+\chapter{Outras considerações}
+
+O desenvolvimento desta pesquisa em parceria com a Universidade de Torino se deve basicamente pelo ambiente acadêmico disponível em tal instituição. O supervisor deste projeto, professor Dr. Ezio Venturino, desenvolve pesquisa relevante tanto na área de  Análise Numérica quanto em Biomatemática. Poder contar com esta experiência do supervisor nestas duas áreas de pesquisa é um fator essencial para o sucesso da proposta aqui apresentada. Além disso,  é importante ressaltar que a abordagem que propomos neste projeto tem como base o modelo desenvolvido por R. A. Assis \cite{Assis20121507} em parceria com pesquisadores da referida universidade. 
+
+Vale destacar ainda o proponente deste projeto desenvolve pesquisa na área de sistemas dinâmicos. Mais especificamente, temos trabalhado para entender como incertezas sobre parâmetros e condições iniciais por afetar o comportamento assintótico de sistemas dinâmicos. Em \cite{Cecconello2014106} analisamos a influência de incertezas na estabilidade de pontos de equilíbrio de sistemas dinâmicos. Em particular, aplicamos os resultado obtidos nesse trabalho para análise assintótica de modelos de epidemiologia. Já em \cite{Cecconello201321}, analisamos a existência e estabilidade  de soluções periódicas de equações diferenciais sob a influência de incertezas na condição inicial. Vale ressaltar que soluções periódicas são frequentes em modelos de interações do tipo presa--predador. Recentemente, conseguimos algumas importantes generalizações dos resultados anteriores que podem ser conferidos em \cite{Cecconello201599}. Além disso, em \cite{jeff} discutimos o comportamento assintótico de soluções de equações diferenciais parciais com incertezas nas condições iniciais. O conhecimento em comportamento assintótico para o desenvolvimento das pesquisas citadas, certamente, será de utilidade indispensável na análise das equações que temos pretensão de desenvolver neste projeto.
+
+
+\chapter{Cronograma de atividades}
+Esta proposta está sendo elaborada com a perspectiva de doze (12) meses de duração com previsão de início em Janeiro de 2016. A tabela a seguir resumo o cronograma de atividades.
+\begin{center}
+\begin{table}[h]
+\begin{tabular}{|c||c|c|c|c|c|c|}
+\hline
+&Jan--Fev&Mar--Abril&Jun--Jul&Ago--Set&Out--Nov&Dez--Jan\\
+\hline
+Meta 1&x&x&&&&\\
+\hline
+Meta 2&&x&x&&&\\
+\hline
+Meta 3&&&x&x&x&\\
+\hline
+Meta 4&&&&x&x&x\\
+\hline
+Meta 5&&&&&&x\\
+\hline
+Meta 6&&&&&x&x\\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+Meta 1 - Revisão da literatura básica em teoria dos jogos evolutivos.\\
+Meta 2 - Estudo aprofundado da literatura recente dos modelos de inclusão de variação fenotípica.\\
+Meta 3 - Desenvolvimento e análise matemática de modelos de variação fenotípica para dinâmica de espécies interagindo por meio de jogos evolutivos.\\
+Meta 4 - Análise de jogos evolutivos clássicos da literatura que capturam a essência do comportamento de cooperação e altruísmo, como Hawk--Dove, Dilema do Prisioneiro entre outros,  por meio desses modelos.\\
+Meta 5 - Buscar por semelhanças e diferenças entre as diversas abordagens teóricas atualmente bem estabelecidas na literatura.\\
+Meta 6 - Apresentação em congressos internacionais e elaboração de artigos.\\
+
+
+% ----------------------------------------------------------
+% Capitulo com exemplos de comandos inseridos de arquivo externo 
+% ----------------------------------------------------------
+
+%\include{abntex2-modelo-include-comandos}
+
+% ---
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ---
+\phantompart
+
+%\chapter*[Considerações finais]{Considerações finais}
+%\addcontentsline{toc}{chapter}{Considerações finais}
+
+%\lipsum[31-33]
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+%\bibliography{referbib}
+
+
+
+%\begin{anexosenv}
+
+% Imprime uma página indicando o início dos anexos
+%\partanexos
+
+% ---
+%\chapter{Morbi ultrices rutrum lorem.}
+% ---
+%\lipsum[30]
+
+
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+
+\phantompart
+
+\printindex
+
+
+\end{document}

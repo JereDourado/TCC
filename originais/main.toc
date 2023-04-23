@@ -1,0 +1,33 @@
+\changetocdepth {4}
+\select@language {brazil}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{Introdu\IeC {\c c}\IeC {\~a}o}{3}{chapter*.2}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Objetivos gerais e espec\IeC {\'\i }ficos}}{6}{chapter.1}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Justificativa e relev\IeC {\^a}ncia}}{7}{chapter.2}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Revis\IeC {\~a}o bibliogr\IeC {\'a}fica}}{9}{chapter.3}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Metodologia}}{12}{chapter.4}
+\contentsline {section}{\numberline {4.1}O modelo matem\IeC {\'a}tico}{12}{section.4.1}
+\contentsline {section}{\numberline {4.2}A din\IeC {\^a}mica em jogo evolutivo}{12}{section.4.2}
+\contentsline {section}{\numberline {4.3}Alguns casos particulares}{13}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Hawk--Dove}{13}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Dilema do prisioneiro}{14}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Conflitos por recursos}{14}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Mais de duas estrat\IeC {\'e}gias puras}{15}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Outras estrat\IeC {\'e}gias: identificando o oponente}{15}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Hawk--Dove}{15}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Dilema do prisioneiro}{16}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Outras abordagens}{16}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Equa\IeC {\c c}\IeC {\~a}o do replicador generalizada}{16}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Influ\IeC {\^e}ncia do aprendizado}{17}{subsection.4.5.2}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Outras considera\IeC {\c c}\IeC {\~o}es}}{18}{chapter.5}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Cronograma de atividades}}{19}{chapter.6}
+\vspace {\cftbeforechapterskip }
+\vspace {\cftbeforechapterskip }
+\vspace {\cftbeforechapterskip }

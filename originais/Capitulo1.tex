@@ -1,0 +1,383 @@
+%\include{preambulo}
+
+\chapter{Conceitos Básicos da Teoria Dos Jogos}
+
+Desde criança todos nós jogamos jogos, que vão desde uma brincadeira como pega-pega, esconde-esconde, vídeo games e etc; até jogos mais elaborados como alguns esportes, jogos de tabuleiro e RPG. O que esses jogos têm em comum são as tomadas de decisões baseadas no conhecimento de que elas afetam diretamente todos os jogadores e vence quem tomar a melhor decisão. Esse conjunto de decisões é chamado de estratégia.
+
+O universo dos jogos é muito vasto, por exemplo, existem jogos que são de equipes onde cada decisão de um jogador visa derrotar a equipe adversária e ajudar a sua equipe, ou seja, a estratégia é executada em grupo. Existem também jogos de azar em que alem das decisões dos jogadores há também uma variável aleatória que depende da "sorte" de cada jogador, não podendo assim ser previstas precisamente nas estratégias. 
+
+Esses jogos podem ser divididos em duas classes, a classe dos jogos em que para um jogador ou equipe ganhar, o jogador ou equipe adversária precisa necessariamente perder, esses jogos são chamados de jogos de soma zero; e a classe dos jogos que têm mais de duas possibilidade, nesses jogos os jogadores podem ou ambos perderem ou ambos ganharem. Essa ultima classe é a mais estudada na Teoria dos Jogos.
+
+\section{Contexto Histórico}
+
+Os registros mais antigos sobre teoria dos jogos são do século XVIII, em uma correspondência dirigida a Nicolas Bernoulli, James Waldegrave analisa um jogo de cartas chamado "\textit{le Her}" e fornece uma solução que é um equilíbrio de estratégia mista (conceito definido posteriormente), mas Waldegrave não estendeu sua abordagem para uma teoria geral. No início do século XIX, temos o famoso trabalho de Augustin Cournot sobre duopólio \cite{COURNOT}. Em 1913, Ernst Zermelo publicou o primeiro teorema matemático da teoria dos jogos \cite{ZERMELO}, o teorema afirma que o jogo de xadrez é estritamente determinado, ou seja, em cada estágio do jogo pelo menos um dos jogadores tem uma estratégia em que lhe permitirá a vitória ou conduzirá o jogo ao empate.
+
+Outro grande matemático que se interessou em jogos foi Emile Borel, que reinventou as soluções \textit{minimax} e publicou quatro artigos sobre jogos estratégicos. Ele achava que a guerra e a economia podiam ser estudadas de uma maneira semelhante.
+
+Em seu início, a teoria dos jogos não chamou muita atenção dos matemáticos. Foi John von Neumann que mudou esta situação, no ano 1928, ele demonstrou que todo jogo finito de soma zero com duas pessoas possui uma solução em estratégias mistas \cite{NEUMANN}. A demonstração original usava topologia e análise funcional e era muito complicada de se entender. Em 1937, ele forneceu uma nova demonstração baseada no teorema do ponto fixo de Brouwer. Neumann, que trabalhava em muitas áreas da ciência, mostrou interesse em economia e, junto com o economista Oscar Morgenstern, publicou o clássico "\textit{The Theory of Games and Economic Behaviour}" \cite{NEUMANN1} em 1944 e, fazendo com isto, a teoria dos jogos ganhar importância na economia e na matemática aplicada.
+
+Em 1950, o matemático John Forbes Nash Júnior publicou quatro artigos importantes para a teoria dos jogos não-cooperativos e para a teoria de barganha. Em "\textit{Equilibrium Points in n-Person Games}" \cite{NASH} e "\textit{Non-cooperative Games}" \cite{NASH1}, Nash provou a existência de um equilíbrio de estratégias mistas para jogos não-cooperativos, denominado equilíbrio de Nash, e sugeriu uma abordagem de estudo de jogos cooperativos a partir de sua redução para a forma não-cooperativa. Nos artigos "\textit{The Bargaining Problem}" \cite{NASH2} e "\textit{Two-Person Cooperative Games}" \cite{NASH3}, ele criou a teoria de barganha e provou a existência de solução para o problema da barganha de Nash.
+
+Em 1994, John Forbes Nash Jr. (Universidade de Princeton), John Harsanyi (Universidade de Berkeley, California) e Reinhard Selten (Universidade de Bonn, Alemanha) receberam o prêmio Nobel por suas contribuições para a Teoria dos Jogos.
+
+\section{Formalização Matemática}
+
+A \textbf{Teoria dos jogos} é um conjunto de ferramentas matemáticas para estudo e modelagem de problemas, denominados \textbf{jogos}, que envolvem condições de conflito de interesses por parte dos jogadores que tomam as decisões ou escolhem as jogadas. 
+
+Um jogo tem os seguintes elementos básicos:
+
+\begin{itemize}
+\item Um conjunto finito de jogadores representados por $J=\{j_1,j_2,\cdots,j_n\}$.
+\item Cada jogador $j_i\in J$ possui um conjunto finito $E_i=\{e_{i1},e_{i2},\cdots,e_{im_i}\}$ de opções, chamadas de \textbf{estratégias puras} do jogador $j_i$.
+\item O conjunto de todas as estratégias puras, ou seja, o produto cartesiano das estratégias puras de cada jogador $$E=\prod_{i=1}^{n}E_i=E_1\times E_2\times\cdots\times E_n$$ chamado de \textbf{espaço de estratégia pura} do jogo.
+\item Um vetor $e=(e_{1k_1},e_{2k_2},\cdots,e_{nk_n})\in E$, onde $e_{ik_i}\in E_i$ é a estratégia pura do jogador $j_i\in J$, chamado de \textbf{perfil de estratégia pura}.
+\item Para cada jogador $j_i\in J$, existe uma função utilidade $$\funcao{u_i}{E}{\R}{e}{u_i(e)}$$ que associa o ganho chamada de \textbf{recompensa} $u_i(e)$ do jogador $j_i$ a cada perfil de estratégia pura $e\in E$.
+\end{itemize}
+
+\begin{ex}\label{bat}
+Um casal $x$ e $y$ desejam sair para passear, o indivíduo $x$ prefere assistir a um jogo de futebol $f$ enquanto que o indivíduo $y$ prefere ir ao cinema $c$. Se eles forem juntos para o futebol, então $x$ tem satisfação maior do que $y$, por outro lado, se eles forem juntos ao cinema, então $y$ tem satisfação maior do que $x$ e finalmente, se eles saírem sozinhos, então ambos ficam igualmente insatisfeitos. Esta situação pode ser modelada como um jogo estratégico. Então temos o conjunto de jogadores $J=\{x,y\}$, os conjuntos de estratégias puras possíveis para o jogador $x$ e $y$, $E_{x}=\{f,c\}$ e $E_{y}=\{f,c\}$, o espaço de estratégia pura $E=\{(f,f),(f,c),(c,f),(c,c)\}$.
+
+As duas funções utilidade $u_{x} : E \rightarrow \R$ e $u_{y} : E \rightarrow \R$ são:
+
+$$u_x(e)=\left\{\begin{array}{lll}u_x(f,f)&=&10\\u_x(f,c)&=&0\\u_x(c,f)&=&0\\u_x(c,c)&=&5\end{array}\right.\quad\text{e}\quad u_y(e)=\left\{\begin{array}{lll}u_y(f,f)&=&5\\u_y(f,c)&=&0\\u_y(c,f)&=&0\\u_y(c,c)&=&10\end{array}\right.$$\vspace{0.1cm}
+
+que são melhor descritas pela seguinte \textbf{matriz de recompensas}:
+
+\begin{center}
+\begin{tabular}[H]{c|c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{$y$} \\\cline{2-4}
+& $\times$ & f & c\\\cline{2-4}
+\multirow{2}{*}{$x$} & f & $(10,5)$ & $(0,0)$ \\\cline{2-4}
+& c & $(0,0)$ & $(5,10)$ \\\cline{2-4}
+\end{tabular}
+\end{center}\vspace{1cm}
+Nesta matriz, os números de cada célula representam, respectivamente, as recompensas de $A$ e $B$ para as escolhas de $A$ e $B$ correspondentes a célula. 
+
+\hfill$\blacksquare$
+
+\end{ex}
+
+\begin{ex}\label{ppt} (\textbf{Pedra, Papel e Tesoura}). Nesse jogo, dois participantes dizem as palavras \textit{pedra, papel, tesoura} em uníssono. Quando chegam à palavra \textbf{tesoura}, cada um faz simultaneamente com a mão um gesto que indica a escolha de pedra $Pe$ (um punho fechado), papel $Pa$ (uma mão aberta) ou tesoura $Te$ (dedos médios e indicador estendidos). O vencedor do jogo depende dos sinais escolhidos pelos dois jogadores. Pedra \textit{esmigalha} tesoura, tesoura \textit{corta} papel e papel \textit{cobre} pedra. Portanto, o jogador que escolher o sinal para pedra ganhará daquele que escolher o sinal tesoura, mas perderá para o que escolher o sinal para papel e assim por diante. Neste contexto temos: $J=\{j_1,j_2\}$, $E_{j_1}=\{Pe,Pa,Te\}$, $E_{j_2}=\{Pe,Pa,Te\}$, $E=\{(Pe,Pe),(Pe,Pa),(Pe,Te),(Pa,Pe),(Pa,Pa),$\\$(Pa,Te),(Te,Pe),(Te,Pa),(Te,Te)\}$ e a matriz de recompensas:
+
+\begin{center}
+\begin{tabular}[H]{c|c|c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{$j_2$} \\\cline{2-5}
+& $\times$ & $Pe$ & $Pa$ & $Te$\\\cline{2-5}
+\multirow{3}{*}{$j_1$} & $Pe$ & $(0,0)$ & $(-1,1)$ & $(1,-1)$\\\cline{2-5}
+& $Pa$ & $(1,-1)$ & $(0,0)$ & $(-1,1)$\\\cline{2-5}
+& $Te$ & $(-1,1)$ & $(1,-1)$ & $(0,0)$\\\cline{2-5}
+\end{tabular}
+\end{center}\vspace{1cm}
+
+\hfill$\blacksquare$
+
+\end{ex}
+
+Possivelmente o exemplo mais conhecido na teoria dos jogos é o dilema do prisioneiro. Ele foi formulado por Albert W. Tucker em 1950, em um seminário de psicologia na Universidade de Stanford, para ilustrar a dificuldade de se analisar qual é a melhor decisão em situações de conflito de interesses.
+
+\begin{ex}\label{dil}
+(\textbf{Dilema do Prisioneiro}) Dois suspeitos, $A$ e $B$, são presos pela polícia. A polícia tem provas insuficientes para os condenar, mas, separando os prisioneiros, oferece a ambos o mesmo acordo: se um dos prisioneiros, confessando, testemunhar contra o outro e esse outro negar, o que confessou sai livre enquanto o cúmplice silencioso cumpre $5$ anos de sentença. Se ambos negarem, a polícia só pode condená-los a $1$ ano de cadeia cada um. Se ambos traírem o comparsa, cada um leva $3$ anos de cadeia. Cada prisioneiro faz a sua decisão, negar $C$ ou confessar $N$, sem saber que decisão o outro vai tomar. Neste contexto temos, $J=\{A,B\}$, $E_A=\{C,N\}$, $E_B=\{C,N\}$, $E=\{(C,N),(C,C),(N,C),(N,N)\}$ e a matriz de recompensas:
+
+\begin{center}
+\begin{tabular}[H]{c|c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{$B$} \\\cline{2-4}
+& $\times$ & $C$ & $N$\\\cline{2-4}
+\multirow{2}{*}{$A$} & $C$ & $(-3,-3)$ & $(0,-5)$ \\\cline{2-4}
+& $N$ & $(-5,0)$ & $(-1,-1)$ \\\cline{2-4}
+\end{tabular}
+\end{center}\vspace{1cm}
+
+\hfill$\blacksquare$
+
+\end{ex}
+
+\section{Solução de um Jogo}
+
+Uma solução de um jogo é uma previsão do resultado do jogo, existem muitos conceitos diferentes de solução dentre os quais os mais comuns são dominância e equilíbrio de Nash.
+
+Considere o dilema do prisioneiro. Como encontrar uma solução para o dilema de $A$ e $B$, isto é, quais estratégias são melhores se os dois prisioneiros querem minimizar\footnote{No exemplo \ref{dil}, as recompensas foram definidas como números negativos, ou seja, o tempo que os prisioneiros perderiam na cadeia. Desta maneire, minimizar o tempo na cadeia é o mesmo que maximizar a recompensa.} o tempo de cadeia? Analisando o jogo do ponto de vista do jogador $A$, ele pode raciocinar da seguinte maneira:
+
+\begin{center}
+\begin{minipage}{14cm}
+\textit{"Duas coisas podem acontecer: $B$ pode confessar ou pode negar.
+\begin{itemize}
+\item Se $B$ confessar, então é melhor para mim confessar também, pois só pego $3$ anos de cadeia ao invés de pegar $5$ anos se eu negasse.
+\item Se $B$ negar, então eu fico livre se eu confessar, o que é melhor do que pegar $1$ ano se eu negasse.
+\end{itemize}
+Em qualquer um dos casos, é melhor para mim confessar, então eu confessarei!"}
+\end{minipage}
+\end{center}\vspace{0.1cm}
+
+Analisando agora o jogo do ponto de vista de $B$, ele pode ter a mesma linha de raciocínio e concluir que $B$ também irá confessar. Assim, ambos confessarão e ficarão presos por 5 anos.
+
+Em termos da teoria dos jogos, dizemos que os dois jogadores possuem uma \textbf{estratégia dominante}, isto é, todas menos uma estratégia são \textbf{estritamente dominadas}, que o jogo é resolúvel por \textbf{dominância estrita iterada} e que o jogo termina em uma \textbf{solução que é um equilíbrio de estratégia dominante}, conceitos que definiremos a seguir.
+
+\subsection{Dominância}
+
+Considere um perfil de estratégia na qual apenas a estratégia de um único jogador $j_i \in j$ irá variar, enquanto que as estratégias de seus oponentes permanecerão fixas. Denote por $e_{-i}\in E_{-i}$, onde:
+
+\begin{eqnarray}
+E_{-i} & = & E_1\times\cdots\times E_{i-1}\times E_{i+1}\times\cdots\times E_n\nonumber\\
+e_{-i} & = & \left(e_{1j_1},\cdots,e_{(i-1)j_{i-1}},e_{(i+1)j_{i+1}},\cdots,e_{nk_n}\right)\nonumber
+\end{eqnarray}
+
+uma escolha de estratégia para todos os jogadores, menos o jogador $j_i$. Desta maneira, um perfil de estratégia pode ser convenientemente denotado por
+
+$$e = (e_{ij_i} , e_{-i}) = \left(e_{1j_1},\cdots, e_{(i-1)j_{i-1}}, e_{ij_i}, e_{(i+1)j_{i+1}},\cdots, e_{nj_n}\right)$$
+
+Uma estratégia pura $e_{ik} \in E_i$ do jogador $j_i \in J$ é \textbf{estritamente dominada} pela estratégia $e_{ik'} \in E_i$ se 
+
+$$u_i\left(e_{ik'}, e_{-i}\right) > u_i\left(e_{ik}, e_{-i}\right)$$\vspace{0.1cm}
+
+para todo $e_{-i} \in E_{-i}$. A estratégia $e_{ik} \in E_i$ é \textbf{fracamente dominada} pela estratégia $e_{ik'} \in E_i$ se $u_i\left(e_{ik'} , e_{-i}\right) \geq u_i\left(e_{ik}, e_{-i}\right)$, para todo $e_{-i} \in E_{-i}$.
+
+\textbf{Dominância estrita iterada} é um processo onde se eliminam as estratégias que são estritamente dominadas.
+
+\begin{ex}\label{tab} Considere o jogo determinado pela matriz de recompensas abaixo.
+
+\begin{center}
+\begin{tabular}[H]{c|c|c|c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{4}{c}{$j_2$} \\\cline{2-6}
+& $\times$ & $e_{21}$ & $e_{22}$ & $e_{23}$ & $e_{24}$\\\cline{2-6}
+\multirow{4}{*}{$j_1$} & $e_{11}$ & $(5,2)$ & $(2,6)$ & $(1,4)$ & $(0,4)$ \\\cline{2-6}
+& $e_{12}$ & $(0,0)$ & $(3,2)$ & $(2,1)$ & $(1,1)$ \\\cline{2-6}
+& $e_{13}$ & $(7,0)$ & $(2,2)$ & $(1,1)$ & $(5,1)$ \\\cline{2-6}
+& $e_{14}$ & $(9,5)$ & $(1,3)$ & $(0,2)$ & $(4,8)$ \\\cline{2-6}
+\end{tabular}
+\end{center}\vspace{1cm}
+
+Neste jogo, para o jogador $j_2$, a estratégia $e_{21}$ é estritamente dominada pela estratégia $e_{24}$, assim, a primeira coluna da matriz pode ser eliminada.
+
+\begin{center}
+\begin{tabular}[H]{c|c|c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{$j_2$} \\\cline{2-5}
+& $\times$ & $e_{22}$ & $e_{23}$ & $e_{24}$\\\cline{2-5}
+\multirow{4}{*}{$j_1$} & $e_{11}$ & $(2,6)$ & $(1,4)$ & $(0,4)$ \\\cline{2-5}
+& $e_{12}$ & $(3,2)$ & $(2,1)$ & $(1,1)$ \\\cline{2-5}
+& $e_{13}$ & $(2,2)$ & $(1,1)$ & $(5,1)$ \\\cline{2-5}
+& $e_{14}$ & $(1,3)$ & $(0,2)$ & $(4,8)$ \\\cline{2-5}
+\end{tabular}
+\end{center}\vspace{1cm}
+
+Agora, nesta matriz reduzida, para o jogador $j_1$, as estratégias $e_{11}$ e $e_{14}$ são estritamente dominadas pelas estratégias $e_{12}$ e $e_{13}$, respectivamente, portanto, as linhas $1$ e $4$ podem ser eliminadas. Além disso, a estratégia $e_{23}$ do jogador $j_2$ é estritamente dominada pelas estratégia $e_{22}$. Assim, a coluna $2$ também pode ser eliminada. Obtemos então uma matriz reduzida $2 \times 2$.
+
+\begin{center}
+\begin{tabular}[H]{c|c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{$j_2$} \\\cline{2-4}
+& $\times$ & $e_{22}$ & $e_{24}$\\\cline{2-4}
+\multirow{2}{*}{$j_1$} & $e_{12}$ & $(3,2)$ & $(1,1)$ \\\cline{2-4}
+& $e_{13}$ & $(2,2)$ & $(5,1)$ \\\cline{2-4}
+\end{tabular}
+\end{center}\vspace{1cm}
+
+Finalmente, a estratégia $e_{24}$ do jogador $j_2$ é estritamente dominada pela estratégia $e_{22}$ e, na matriz $2 \times 1$ resultante, a estratégia $e_{13}$ do jogador $j_1$ é estritamente dominada pela estratégia $e_{12}$. Vemos então que o resultado do jogo é $(3, 2)$, ou seja, o jogador $j_1$ escolhe a estratégia $e_{12}$ e o jogador $j_2$ escolhe a estratégia $e_{22}$. 
+
+\hfill$\blacksquare$
+
+\end{ex}
+
+No exemplo acima, a técnica de dominância estrita iterada forneceu um único perfil de estratégia como solução do jogo, no caso, o perfil $\left(e_{12},e_{22}\right)$ contudo, pode acontecer da técnica fornecer vários perfis ou, até mesmo, fornecer todo o espaço de estratégia, como é o caso da batalha dos sexos, onde não existem estratégias estritamente dominadas.
+
+\subsection{Equilíbrio de Nash}
+
+Dizemos que um perfil de estratégia $e^*=\left(e^*_{1},\cdots,e^*_{(i-1)},e^*_{i},e^*_{(i+1)},\cdots,e^*_{n}\right)\in E$ é um \textbf{equilíbrio de Nash} se $$u_i\left(e^*_{i},e^*_{-i}\right)\geq u_i\left(e_{ij_i},e^*_{-i}\right)$$ para todo $i=1,2,\cdots,n$ e para todo $j_i=1,2,\cdots,k_i$; com $k_i\geq2$. Ou seja, um equilíbrio de Nash de um jogo é um ponto onde cada jogador não tem incentivo de mudar sua estratégia se os demais jogadores não o fizerem.
+
+\begin{ex} Equilíbrios de Nash.
+
+\begin{enumerate}[a)]
+\item No exemplo \ref{bat}, os perfis de estratégia $(f,f)$ e $(c,c)$ são os únicos equilíbrios de Nash do jogo.
+\item No exemplo \ref{dil}, o perfil de estratégia $(D,D)$ é um equilíbrio de Nash. De fato, se um prisioneiro confessar
+e o outro negar, aquele que negou fica preso na cadeia $5$ anos, ao invés de $3$ anos, se tivesse confessado. Além desse perfil, não tem outros equilíbrios de Nash nesse jogo.
+\item No exemplo \ref{tab}, o único equilíbrio de Nash do jogo é o perfil de estratégia $(e_{12},e_{22})$.
+\item Existem jogos que não possuem equilíbrios de Nash em estratégias. Este é o caso do jogo exemplo \ref{ppt}.
+\end{enumerate}\hfill$\blacksquare$
+
+\end{ex}
+
+\section{Estratégias Mistas}
+
+Como vimos no jogo Pedra Papel e Tesoura do exemplo \ref{ppt} acima, existem jogos que não possuem equilíbrios de Nash em estratégias puras. Uma alternativa para estes casos é a de considerar o jogo do ponto de vista probabilístico, isto é, ao invés de escolher um perfil de estratégia pura, o jogador deve escolher uma \textbf{distribuição de probabilidade} sobre suas estratégias puras.
+
+Uma \textbf{estratégia mista} $\textbf{p}_i$ para o jogador $j_i \in J$ é uma distribuição de probabilidades sobre o conjunto $E_i$ de estratégias puras do jogador, isto é, $\textbf{p}_i$ é um elemento do conjunto
+
+\begin{equation}\nonumber
+\Delta_{k_i}=\left\{\left(x_1,x_2,\cdots,x_{k_i}\right)\in\R^{k_i}\left|x_1,x_2,\cdots,x_{k_i}\geq0\text{ e } \sum_{r=1}^{k_i}{x_r}=1\right\}\right.
+\end{equation}\vspace{0.1cm}
+
+Assim, se $\textbf{p}_i=(p_{i1}, p_{i2},\cdots,p_{ik_i})\in\Delta_{k_i}$, então $p_{i1}, p_{i2},\cdots,p_{ik_i}\geq0$ e $\displaystyle\sum_{r=1}^{k_i}{p_{ir}}=1$.
+
+Note que cada $\Delta_{k_i}$ é um conjunto compacto e convexo. Os pontos extremos, ou vértices, de $\Delta_{k_i}$, isto é, os pontos da forma $s_1=(1,0,\cdots,0,0)$, $s_2=(0,1,\cdots,0,0)$, $\cdots$, $s_{k_i}=(0,0,\cdots,0,1)$ dão, respectivamente, probabilidade 1 às estratégias puras $e_{i1}, e_{i2},\cdots , e_{ik_i}$. Desta maneira, podemos considerar a distribuição de probabilidade $s_r$ como a estratégia mista que representa a estratégia pura $e_{ir}$ do jogador $j_i$.
+
+O espaço de todos os perfis de estratégia mista é o produto cartesiano
+
+$$\Delta=\Delta_{k_1}\x\Delta_{k_2}\x\cdots\x\Delta_{k_n}$$
+
+denominado \textbf{espaço de estratégia mista}. Um vetor $\textbf{p}\in\Delta$ é denominado um \textbf{perfil de estratégia mista}. Como no caso de estratégias puras, usaremos a notação $\textbf{p}_{-i}$ para representar as estratégias de todos os jogadores, com exceção do jogador $j_i$.
+
+Como o produto cartesiano de conjuntos compactos e convexos é compacto e convexo, vemos que $\Delta$ é compacto e convexo.
+
+Cada perfil de estratégia mista $\textbf{p}=(\textbf{p}_1,\textbf{p}_2,\cdots,\textbf{p}_n)\in\Delta$ determina uma recompensa esperada, uma média das recompensas ponderada pelas distribuições de probabilidades $\textbf{p}_1,\textbf{p}_2,\cdots,\textbf{p}_n$. Mais precisamente, se
+
+\begin{eqnarray}
+\textbf{p} & = & (\textbf{p}_1,\textbf{p}_2,\cdots,\textbf{p}_n)\nonumber\\\vspace{0.1cm}
+ & = & \left(\underbrace{p_{11},p_{12},\cdots,p_{1k_1}}_{\textbf{p}_1};\underbrace{p_{21},p_{22},\cdots,p_{2k_2}}_{\textbf{p}_2};\cdots;\underbrace{p_{n1},p_{n2},\cdots,p_{nk_n}}_{\textbf{p}_n}\right)\nonumber
+\end{eqnarray}\vspace{0.1cm}
+
+então
+
+\begin{equation}\nonumber
+u_i(\textbf{p})=\sum_{r_1=1}^{k_1}\sum_{r_2=1}^{k_2}\cdots\sum_{r_n=1}^{k_n}\left(\prod_{s=1}^{n}{p_{sr_s}u_i\left(e_{1r_1},e_{2r_2},\cdots,e_{nr_n}\right)}\right)
+\end{equation}\vspace{0.1cm}
+
+\begin{ex} \textbf{Par ou Impar} Nesse jogo, cada um de dois jogadores escolhem uma das opções, impar $I$ ou par $P$, e exibem, ao mesmo tempo, uma quantidade de dedos com a sua mão. Se a soma dos dedos apresentados pelos dois jogadores for um número par, o que escolheu par vence, e se a soma for impar o que escolheu essa opção vence. Esse jogo é representado pela matriz de recompensa abaixo onde o jogador $j_1$ escolheu par, e o jogador $j_2$ escolheu impar.
+
+\begin{center}
+\begin{tabular}[H]{c|c|c|c|}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{$j_2$} \\\cline{2-4}
+& $\times$ & $I$ & $P$\\\cline{2-4}
+\multirow{2}{*}{$j_1$} & $I$ & $(+1,-1)$ & $(-1,+1)$ \\\cline{2-4}
+& $P$ & $(-1,+1)$ & $(+1,-1)$ \\\cline{2-4}
+\end{tabular}
+\end{center}\vspace{1cm}
+
+Suponhamos que o jogador $j_1$ escolheu  a distribuição de probabilidades $\textbf{p}_1=\left(p_{11},p_{12}\right)=\left(\tfrac{1}{4},\tfrac{3}{4}\right)$ e o $j_2$ escolheu $\textbf{p}_2=\left(p_{21},p_{22}\right)=\left(\tfrac{1}{3},\tfrac{2}{3}\right)$, então as recompensas associadas ao perfil de estratégia mista $\textbf{p}=\left(\textbf{p}_1,\textbf{p}_2\right)=\left(\tfrac{1}{4},\tfrac{3}{4};\tfrac{1}{3},\tfrac{2}{3}\right)$ são dadas por
+
+\begin{eqnarray}
+u_1\left(\textbf{p}\right) & = & \sum_{r_1=1}^{2}\sum_{r_2=1}^{2}\left(\prod_{s=1}^{2}{p_{sr_s}u_1(e_{1r_1},e_{2r_2})}\right)\nonumber\\\nonumber\\
+ & = & p_{11}\bigg(p_{21}u_1(e_{11},e_{21})+p_{22}u_1(e_{11},e_{22})\bigg)+\nonumber\\
+& & p_{12}\bigg(p_{21}u_1(e_{12},e_{21})+p_{22}u_1(e_{12},e_{22})\bigg)\nonumber\\\nonumber\\
+& = & \dfrac{1}{4}\bigg(\dfrac{1}{3}(+1)+\dfrac{2}{3}(-1)\bigg)+\dfrac{3}{4}\bigg(\dfrac{1}{3}(-1)+\dfrac{2}{3}(+1)\bigg)\nonumber\\\nonumber\\
+& = & +\dfrac{1}{6}\nonumber\vspace{0.1cm}
+\end{eqnarray}
+
+e analogamente
+
+\begin{eqnarray}
+u_2\left(\textbf{p}\right) & = & \sum_{r_1=1}^{2}\sum_{r_2=1}^{2}\left(\prod_{s=1}^{2}{p_{sr_s}u_2(e_{1r_1},e_{2r_2})}\right)\nonumber\\\nonumber\\
+ & = & p_{11}\bigg(p_{21}u_2(e_{11},e_{21})+p_{22}u_2(e_{11},e_{22})\bigg)+\nonumber\\
+& & p_{12}\bigg(p_{21}u_2(e_{12},e_{21})+p_{22}u_2(e_{12},e_{22})\bigg)\nonumber\\\nonumber\\
+& = & \dfrac{1}{4}\bigg(\dfrac{1}{3}(-1)+\dfrac{2}{3}(+1)\bigg)+\dfrac{3}{4}\bigg(\dfrac{1}{3}(+1)+\dfrac{2}{3}(-1)\bigg)\nonumber\\\nonumber\\
+& = & -\dfrac{1}{6}\nonumber\vspace{0.1cm}
+\end{eqnarray}
+\hfill$\blacksquare$
+\end{ex}
+
+\subsection{Soluções em Estratégias Mistas}
+
+Todos os critérios básicos para soluções de jogos em estratégias puras podem ser estendidos para estratégias mistas, denominado \textbf{dominância estrita iterada}. Sejam $E_i^{(0)}=E_i$ e $\Delta_{k_i}^{(0)} = \Delta_{k_i}$. Definamos, recursivamente, 
+
+\begin{eqnarray}
+E_i^{(n)} & = & \left\{e\in E_i^{(n-1)}\left|\nexists\textbf{p}\in\Delta_{k_i}^{(n-1)}\text{ onde }\forall e_{-i}\in E_{-i}^{(n-1)}\Rightarrow u_i(\textbf{p},e_{-i})>u_i(e,e_{-i})\right.\right\}\nonumber\\\vspace{0.1cm}
+& \text{ e } & \nonumber\\\vspace{0.1cm}
+\Delta_{k_i}^{(n)} & = & \left\{\textbf{p}=(\textbf{p}_1,\textbf{p}_2,\cdots,\textbf{p}_{k_i})\in \Delta_{k_i}\left|\textbf{p}_r>0 \text{ somente se } e_{ir}\in E_{i}^{(n)}\right.\right\}\nonumber
+\end{eqnarray}\vspace{0.1cm}
+
+onde, $u_i(\textbf{p}, e_{-i})$ representa a recompensa esperada quando o jogador $j_i$ escolhe a estratégia mista $\textbf{p}$ e os demais jogadores escolhem as estratégias mistas correspondentes as estratégias puras dadas por $s_{-i}$. A interseção 
+
+\begin{equation}\nonumber
+E_i^{\infty}=\bigcap_{n=0}^{\infty}{E_i^{(n)}}
+\end{equation}\vspace{0.1cm}
+
+é conjunto de estratégias puras e 
+
+\begin{equation}\nonumber
+\Delta_{k_i}^{(\infty)}=\left\{\textbf{p}\in \Delta_{m_i}\left|\nexists\textbf{p'}\in\Delta_{k_i}^{(n-1)}\text{ onde }\forall e_{-i}\in E_{-i}^{\infty}\Rightarrow u_i(\textbf{p'},e_{-i})>u_i(\textbf{p},e_{-i})\right.\right\}
+\end{equation}\vspace{0.1cm}
+
+é o conjunto de todas as estratégias mistas do jogador $j_i$ que sobreviveram a técnica de dominância estrita iterada.
+
+\subsection{Equilíbrio de Nash}
+
+Dizemos que um perfil de estratégia mista 
+
+\begin{equation}\nonumber
+\textbf{p*}=(\textbf{p*}_1,\textbf{p*}_2,\cdots,\textbf{p*}_{n})\in\Delta=\Delta_{k_1}\x\Delta_{k_2}\x\cdots\x\Delta_{k_n}
+\end{equation}\vspace{0.1cm}
+
+é um equilíbrio de Nash se
+
+\begin{equation}\nonumber
+u_i(\textbf{p*},\textbf{p*}_{-i})\geq u_i(\textbf{p},\textbf{p*}_{-i})
+\end{equation}\vspace{0.1cm}
+
+para todo $\textbf{p} \in \Delta_{p_i}$, isto é, nenhum jogador sente motivação de trocar sua estratégia mista se os demais jogadores não o fizerem.
+
+\begin{ex}
+\begin{enumerate}[a)]
+\item No dilema do prisioneiro, exemplo \ref{dil}, o perfil de estratégia mista
+
+\begin{equation}\nonumber
+\textbf{p*}=\left(\textbf{p*}_1,\textbf{p*}_2\right)=(1,0;1,0)
+\end{equation}\vspace{0.1cm}
+
+é um equilíbrio de Nash, de fato
+
+\begin{eqnarray}
+u_1\left(\textbf{p},\textbf{p*}_2\right) & = & u_1\left(p,1-p;1,0\right)\nonumber\\
+ & = & 5p-10\nonumber\\
+ & \leq & -5\nonumber\\
+ & = & u_1\left(1,0;1,0\right)\nonumber\\
+ & = & u_1\left(\textbf{p*}_1,\textbf{p*}_2\right)\nonumber
+\end{eqnarray}
+
+Portanto $u_1\left(\textbf{p},\textbf{p*}_2\right)\leq u_1\left(\textbf{p*}_1,\textbf{p*}_2\right)$ para todo $\textbf{p}=(p,1-p)\in\Delta_2$ e 
+
+\begin{eqnarray}
+u_2\left(\textbf{p*}_1,\textbf{q}\right) & = & u_2\left(1,0;q,1-q\right)\nonumber\\
+ & = & 5q-10\nonumber\\
+ & \leq & -5\nonumber\\
+ & = & u_2\left(1,0;1,0\right)\nonumber\\
+ & = & u_2\left(\textbf{p*}_1,\textbf{p*}_2\right)\nonumber
+\end{eqnarray}
+
+Portanto $u_2\left(\textbf{p*}_1,\textbf{q}\right)\leq u_2\left(\textbf{p*}_1,\textbf{p*}_2\right)$ para todo $\textbf{q}=(q,1-q)\in\Delta_2$. Observe que este equilíbrio corresponde ao equilíbrio em estratégias puras $\textbf{e*} = (N,N)$.
+
+\end{enumerate}
+\end{ex}
+
+
+%\end{document}
+%\begin{figure}[H]
+%\centering
+%\includegraphics[height=5cm]{Imagem.png}
+%\caption{legenda}
+%\label{Imagem}
+%\end{figure}
+
+%\begin{equation}\nonumber
+
+%\end{equation}\vspace{0.1cm}
+
+%\begin{eqnarray}
+
+%\end{eqnarray}
+
+%\begin{propriedade}
+
+%\end{propriedade}
+
+%\begin{definicao}
+
+%\end{definicao}
+
+%\begin{ex}
+
+%\end{ex}
+
+%\begin{solucao}
+
+%\end{solucao}
+
+%\begin{teorema}
+
+%\end{teorema}
+
+%\begin{demo}
+
+%\end{demo}
+
+%\begin{flushright}
+%\begin{minipage}{7cm}
+%\small
+%\end{minipage}\vspace{1cm}
+%\end{flushright}
